@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axum and HTMX test</title>
+  </head>
+  <body>
+    <h1>Hello, <span id="name">{{ name }}</span>!</h1>
+    <button hx-post="/click" hx-trigger="click" hx-swap="outerHTML">Click Me!</button>
+    <br/>
+    <form hx-post="/rename" hx-swap="innerHTML" hx-target="#name" hx-trigger="submit">
+      <input type="text" name="name" placeholder="Enter your name"/>
+      <input type="submit" value="Change name"/>
+    </form>
+  </body>
+  <script src="main.js"></script>
+</html>
