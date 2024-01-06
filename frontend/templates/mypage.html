@@ -1,5 +1,11 @@
 {% extends "index.html" %}
-{% block body %}
-<h1>MY PAGE</h1>
-<h2>This is my page</h2>
+  {% block body %}
+  <h1>MY PAGE</h1>
+  <h2>This is my page</h2>
+  <h3>USERS: </h3>
+  {% for user in users %}
+  <div>
+    <p>{{ user.id }}: {{ user.name }}</p>
+  </div>
+  {% endfor %}
 {% endblock %}
