@@ -4,6 +4,11 @@
     <title>Axum and HTMX test</title>
   </head>
   <body>
+    <nav hx-boost="true">
+      <a href="/">HOME</a>
+      <a href="/mypage">MY PAGE</a>
+    </nav>
+    {% block body %}
     <h1>Hello, <span id="name">{{ name }}</span>!</h1>
     <button hx-post="/click" hx-trigger="click" hx-swap="outerHTML">Click Me!</button>
     <br/>
@@ -11,6 +16,7 @@
       <input type="text" name="name" placeholder="Enter your name"/>
       <input type="submit" value="Change name"/>
     </form>
+    {% endblock %}
   </body>
   <script src="main.js"></script>
 </html>

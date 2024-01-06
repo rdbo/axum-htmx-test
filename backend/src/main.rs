@@ -13,6 +13,10 @@ struct IndexTemplate<'a> {
     name: &'a str,
 }
 
+#[derive(Template)]
+#[template(path = "mypage.html")]
+struct MyPageTemplate {}
+
 async fn index() -> Html<String> {
     let template = IndexTemplate { name: "World" };
     Html(template.render().unwrap())
@@ -20,6 +24,11 @@ async fn index() -> Html<String> {
 
 async fn click() -> Html<&'static str> {
     Html("<h2>You clicked the button</h2>")
+}
+
+async fn mypage() -> Html<String> {
+    let template = MyPageTemplate {};
+    Html(template.render().unwrap())
 }
 
 #[derive(Deserialize)]
@@ -37,6 +46,7 @@ async fn main() {
         .route("/", get(index))
         .route("/click", post(click))
         .route("/rename", post(rename))
+        .route("/mypage", get(mypage))
         .fallback_service(ServeDir::new("static"));
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
