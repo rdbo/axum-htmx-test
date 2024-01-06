@@ -1,6 +1,7 @@
 use askama_axum::Template;
 use axum::{
-    response::Html,
+    http::HeaderMap,
+    response::{Html, IntoResponse},
     routing::{get, post},
     Form, Router,
 };
@@ -36,8 +37,15 @@ struct Rename {
     name: String,
 }
 
-async fn rename(Form(form): Form<Rename>) -> Html<String> {
-    Html(form.name)
+async fn rename(Form(form): Form<Rename>) -> impl IntoResponse {
+    let mut headers = HeaderMap::new();
+    headers.insert(
+        "HX-Trigger-After-Swap",
+        r#"{ "namechanged": { "message": "Name successfully changed!" } }"#
+            .parse()
+            .unwrap(),
+    );
+    (headers, Html(form.name))
 }
 
 #[tokio::main]
