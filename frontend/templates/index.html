@@ -2,9 +2,10 @@
 <html>
   <head>
     <title>Axum and HTMX test</title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
   </head>
   <body hx-on:namechanged="alert(event.detail.message);">
-    <nav hx-boost="true">
+    <nav hx-boost="true" class="font-bold text-xl text-blue-300">
       <a href="/">HOME</a>
       <a href="/mypage">MY PAGE</a>
     </nav>
