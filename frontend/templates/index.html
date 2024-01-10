@@ -5,12 +5,12 @@
     <link rel="stylesheet" type="text/css" href="main.css"/>
   </head>
   <body hx-on:namechanged="alert(event.detail.message);">
-    <nav hx-boost="true" class="font-bold text-xl text-blue-300">
+    <nav hx-boost="true" class="font-bold text-2xl text-blue-300">
       <a href="/">HOME</a>
       <a href="/mypage">MY PAGE</a>
     </nav>
     {% block body %}
-    <h1>Hello, <span id="name">{{ name }}</span>!</h1>
+    <h1 class="font-bold text-xl">Hello, <span id="name">{{ name }}</span>!</h1>
     <button hx-post="/click" hx-trigger="click" hx-swap="outerHTML">Click Me!</button>
     <br/>
     <form hx-post="/rename" hx-swap="innerHTML" hx-target="#name" hx-trigger="submit">
